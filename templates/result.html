@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='styles/logo.ico') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <title>Detektif Sampah</title>
+</head>
+<body>
+
+    <div class="container text-center">
+        <img class="img-fluid mt-5" src="{{ url_for('static', filename=image_name) }}" alt="Analysis Result"> 
+        <div class="mt-3">
+            <h2>Hasil Analisa Citra</h2>
+            <ul>
+                {% for result in analysis_results %}
+                    <li><b>{{ result.name }}</b>: Akurasi: {{ result.confidence }}%,  Koordinat: ({% for coord in result.bbox %}{{ coord }}{% if not loop.last %}, {% endif %}{% endfor %})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="/" class="btn btn-primary mt-3">Kembali ke halaman awal</a>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+</html>
